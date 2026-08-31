@@ -93,6 +93,10 @@ body {
   z-index: -1;
 }
 
+#main-outlet>.regular {
+  background-color: transparent;
+}
+
 // --------------------------------------------------
 // Header
 //
@@ -263,11 +267,6 @@ body {
 // Main outlet
 // --------------------------------------------------
 @media (width >= #{$bp-sm}) {
-  #main-outlet {
-    --main-outlet-padding-top: 2rem;
-    --main-outlet-padding-bottom: 2rem;
-  }
-
   #topic-title {
     margin-bottom: 1.5rem;
   }
@@ -466,26 +465,30 @@ body {
   }
 }
 
-.user-main .details {
-  padding: 1rem;
+.user-main.about.collapsed-info.details {
+  padding: 16px 16px 9px 16px;
 }
 
 .user-content {
   margin-top: 1rem;
+  padding: 1rem;
 }
 
-.user-preferences {
-  padding: 0 1rem;
+#list-area {
+  background: transparent;
 }
 
-.topic-map .--bottom {
-  padding: 8px;
-}
-
-#topic-footer-buttons {
-  padding: 8px
+.list-controls {
+  padding: 1rem;
+  background-color: var(--box_background);
+  border-radius: var(--d-border-radius);
+  box-shadow: $box-shadow;
 }
 
 .more-topics__container {
   max-width: calc(var(--d-max-width));
+}
+
+.categories-list.with-topics {
+  margin-left: 0;
 }
