@@ -487,5 +487,5 @@ body {
 }
 
 .more-topics__container {
-  width: calc(var(--d-max-width));
+  max-width: calc(var(--d-max-width));
 }
