@@ -62,6 +62,7 @@ html {
   --d-sidebar-active-background: var(--tertiary-low);
   --d-sidebar-active-color: var(--primary);
   --d-sidebar-active-icon-color: var(--tertiary);
+  --topic-body-width: 100%;
 }
 
 // --------------------------------------------------
@@ -273,7 +274,7 @@ body {
 
   .container.posts {
     column-gap: 3rem;
-    grid-template-columns: auto 25%;
+    grid-template-columns: auto 20%;
   }
 }
 
@@ -475,4 +476,16 @@ body {
 
 .user-preferences {
   padding: 0 1rem;
+}
+
+.topic-map .--bottom {
+  padding: 8px;
+}
+
+#topic-footer-buttons {
+  padding: 8px
+}
+
+.more-topics__container {
+  width: calc(var(--d-max-width));
 }
