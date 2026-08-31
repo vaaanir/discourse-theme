@@ -18,6 +18,9 @@ $header-dd-hover-background: dark-light-choose(
   $header-dd-hover-bg-dark
 );
 
+$sidebar-background: dark-light-choose($sidebar-bg-light, $sidebar-bg-dark);
+$sidebar-border: dark-light-choose($sidebar-border-light, $sidebar-border-dark);
+
 $box-background: dark-light-choose($box-bg-light, $box-bg-dark);
 
 $notice-text: dark-light-choose($notice-text-light, $notice-text-dark);
@@ -50,13 +53,16 @@ $topic-separator-color: dark-light-choose(
   --header-dd_border: #{$header-border};
   --header-dd_hover-background: #{$header-dd-hover-background};
 
+  --sidebar_background: #{$sidebar-background};
+  --sidebar_border: #{$sidebar-border};
+
   --box_background: #{$box-background};
 
   --notice_text: #{$notice-text};
   --notice_background: #{$notice-background};
 
   --notice-team_background: #{$notice-team-background};
-  --notice-mod_background: #{$notice-team-background};
+  --notice-mod_background: #{$notice-mod-background};
 
   --topic-separator_color: #{$topic-separator-color};
 }

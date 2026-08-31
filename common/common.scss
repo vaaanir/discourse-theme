@@ -1,46 +1,20 @@
 @import "common/foundation/variables";
 @import "variables";
 
-// font -------------------------------
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url($font) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url($font) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url($font) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url($font) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
+// --------------------------------------------------
+// Font
+// --------------------------------------------------
+@each $weight in (300, 400, 600, 800) {
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: $weight;
+    font-display: swap;
+    src: url($font) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 }
 
 html {
@@ -52,7 +26,47 @@ html {
   font-size: 16px;
 }
 
-// body background -------------------------------
+// --------------------------------------------------
+// Core design tokens
+//
+// Discourse drives layout, spacing and surface colours from `--d-*` custom
+// properties. Setting them here is what makes core's own components (sidebar,
+// user profiles, directory, groups, reviewables, list controls) pick up the
+// theme, instead of us re-painting each one by hand.
+// --------------------------------------------------
+:root {
+  // Layout
+  --d-max-width: #{$content-max-width};
+  --d-border-radius: #{$border-radius};
+
+  // Surfaces. Core paints #list-area, .list-controls, .directory, .body-page,
+  // .container.group, .reviewable, .user-stream .item and .post-list-item from
+  // this one token, so the whole app matches the card colour below.
+  --d-content-background: var(--box_background);
+
+  // Header icons
+  --d-header-icon-color: var(--header_primary);
+  --d-header-icon-color--hover: var(--header_primary);
+  --d-header-icon-color--active: var(--header_primary);
+
+  // Sidebar (replaced the hamburger dropdown as the navigation menu)
+  --d-sidebar-background: var(--sidebar_background);
+  --d-sidebar-border-color: var(--sidebar_border);
+  --d-sidebar-section-border-color: var(--sidebar_border);
+  --d-sidebar-link-color: var(--primary-high);
+  --d-sidebar-link-icon-color: var(--primary-medium);
+  --d-sidebar-header-color: var(--primary-medium);
+  --d-sidebar-header-icon-color: var(--primary-medium);
+  --d-sidebar-highlight-background: var(--tertiary-low);
+  --d-sidebar-highlight-color: var(--primary);
+  --d-sidebar-active-background: var(--tertiary-low);
+  --d-sidebar-active-color: var(--primary);
+  --d-sidebar-active-icon-color: var(--tertiary);
+}
+
+// --------------------------------------------------
+// Body background
+// --------------------------------------------------
 body {
   background-color: transparent;
   position: relative;
@@ -70,77 +84,125 @@ body {
   background-color: var(--body_background-color);
   height: 100vh;
   left: 0;
-  left: 0;
   min-width: 100vw;
   overflow: hidden;
   position: fixed;
-  top: 0;
   top: 0;
   width: auto;
   z-index: -1;
 }
 
-// wrap -------------------------------
-.wrap {
-  max-width: 1280px;
-}
-
-// header -------------------------------
+// --------------------------------------------------
+// Header
+//
+// Core measures the rendered header and exposes it as `--header-offset`, which
+// it uses for sticky avatars and the topic timeline, so overriding the height
+// here stays consistent as long as the element really is this tall.
+// --------------------------------------------------
 .d-header {
   background-color: var(--header_background);
   border-bottom: 1px solid var(--header_border);
   box-shadow: none;
+  height: $header-height-mobile;
 
   &-icons .icon {
-    border-radius: $border-radius;
-    border: none !important;
-
-    &:hover .d-icon,
-    .d-icon {
-      color: var(--header_primary) !important;
-    }
+    border-radius: var(--d-border-radius);
+    border: none;
   }
 
   .extra-info-wrapper {
     padding: 0 1.5rem 0 1rem;
   }
 
-  .menu-panel.drop-down,
-  .menu-panel.slide-in {
-    background-color: var(--header-dd_background);
-    border-radius: $border-radius;
-    border: 1px solid var(--header-dd_border);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -4px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
+  @media (width >= #{$bp-sm}) {
+    height: $header-height;
+  }
+}
 
-    .menu-links .widget-link,
-    .categories-link {
-      border-radius: $border-radius;
-      padding: 0.5em;
+.d-header-icons > li {
+  margin-left: 1rem;
 
-      &:hover,
-      &:focus {
-        background-color: var(--header-dd_hover-background) !important;
-        color: #fff;
+  @media (width >= #{$bp-sm}) {
+    margin-left: 1.5rem;
+  }
+}
 
-        .d-icon {
-          color: #fff;
-        }
-      }
+// Core sizes the logo from --d-logo-height, declared on `.d-header .title`,
+// so the override has to live at that specificity rather than on :root.
+.d-header .title {
+  --d-logo-height: #{$header-logo-mobile};
+
+  @media (width >= #{$bp-sm}) {
+    --d-logo-height: #{$header-logo-big};
+  }
+}
+
+// --------------------------------------------------
+// Header dropdown panels
+//
+// With the sidebar as the navigation menu, these panels now hold the user menu
+// and the search menu. The user menu ships its own internal padding, so the
+// panel only supplies the surface — no padding, no !important.
+// --------------------------------------------------
+.menu-panel.drop-down,
+.menu-panel.slide-in {
+  background-color: var(--header-dd_background);
+  border-radius: var(--d-border-radius);
+  border: 1px solid var(--header-dd_border);
+  box-shadow: $panel-shadow;
+
+  @media (width >= #{$bp-sm}) {
+    margin-top: 0.5rem;
+  }
+}
+
+.menu-panel .widget-link,
+.menu-panel .categories-link {
+  border-radius: var(--d-border-radius);
+
+  &:hover,
+  &:focus {
+    background-color: var(--header-dd_hover-background);
+    color: #fff;
+
+    .d-icon {
+      color: #fff;
     }
   }
 }
 
-// footer -------------------------------
+// --------------------------------------------------
+// Sidebar
+//
+// Styled entirely through the --d-sidebar-* tokens set above; these are only
+// the structural bits the tokens don't cover.
+// --------------------------------------------------
+.sidebar-wrapper .sidebar-container {
+  border-right: 1px solid var(--sidebar_border);
+}
+
+.sidebar-section-link-wrapper .sidebar-section-link {
+  border-radius: var(--d-border-radius);
+}
+
+// --------------------------------------------------
+// Footer
+// --------------------------------------------------
 .d-footer {
   background-color: $footer-bg;
   border-top: 1px solid $footer-border;
+  min-height: $footer-height-mobile;
+  padding: 1rem;
+
+  &-logo {
+    height: $footer-logo-mobile;
+  }
 
   &-nav {
     align-items: center;
     display: flex;
     flex: 0 0 auto;
+    margin: 0.5rem 0 0;
 
     a {
       color: $footer-primary;
@@ -160,30 +222,100 @@ body {
   .contents {
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 100%;
+  }
+
+  @media (width >= #{$bp-sm}) {
+    height: $footer-height;
+    min-height: 0;
+    padding: 0;
+
+    &-logo {
+      height: $footer-logo;
+    }
+
+    &-nav {
+      margin: 0 0 0 auto;
+    }
+
+    .contents {
+      flex-direction: row;
+    }
   }
 }
 
-// box -------------------------------
+// --------------------------------------------------
+// Card surfaces
+// --------------------------------------------------
 .box,
 .topic-post,
 .topic-list,
 .category-list,
 .category-list-item {
   background-color: var(--box_background);
-  border-radius: $box-radius;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: var(--d-border-radius);
+  box-shadow: $box-shadow;
 }
 
-// topic-posts -------------------------------
+// --------------------------------------------------
+// Main outlet
+// --------------------------------------------------
+@media (width >= #{$bp-sm}) {
+  #main-outlet {
+    --main-outlet-padding-top: 2rem;
+    --main-outlet-padding-bottom: 2rem;
+  }
+
+  #topic-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .container.posts {
+    column-gap: 3rem;
+    grid-template-columns: auto 25%;
+  }
+}
+
+@media (width < #{$bp-sm}) {
+  .post-stream {
+    padding-bottom: 3em;
+  }
+}
+
+// --------------------------------------------------
+// Posts
+//
+// Core lays the avatar/body columns out itself now, so the old float and
+// flex-grow resets are gone. What core does NOT drop are the separator
+// borders and the avatar's top padding, which the card treatment replaces.
+// --------------------------------------------------
 .topic-post {
   margin-bottom: 0.5rem;
   padding: 1rem;
 
+  > article {
+    border-top: none;
+    padding: 0;
+  }
+
+  // Core draws separator borders on the avatar/body columns; the card
+  // treatment replaces them.
+  .topic-avatar,
+  .topic-body {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  // Widens the avatar gutter. Flair is anchored to .post-avatar inside this
+  // column, so a margin here moves the avatar and its flair together.
+  .topic-avatar {
+    margin-right: var(--space-3);
+  }
+
   &.moderator .cooked {
     background-color: var(--notice-team_background);
-    border-radius: $border-radius;
+    border-radius: var(--d-border-radius);
     margin-top: 1rem;
     padding: 1rem 1rem 0;
   }
@@ -191,10 +323,6 @@ body {
   .topic-meta-data,
   .post-menu-area {
     font-size: 0.875rem;
-  }
-
-  .topic-meta-data,
-  .post-menu-area {
     margin-bottom: 0;
   }
 
@@ -205,7 +333,7 @@ body {
 
   .post-notice {
     background-color: var(--notice_background);
-    border-radius: $border-radius;
+    border-radius: var(--d-border-radius);
     border-top: none;
     color: var(--notice_text);
     margin-bottom: 2rem;
@@ -226,46 +354,113 @@ body {
   border-top: none;
 }
 
-// topic-list -------------------------------
-.topic-list {
-  .topic-list-item-separator td {
-    border-bottom: 1px solid var(--topic-separator_color);
+// --------------------------------------------------
+// Topic list
+//
+// Cell spacing goes through core's topic-list tokens, which use logical
+// properties, so it stays correct in RTL.
+// --------------------------------------------------
+.topic-list,
+.category-list {
+  --d-topic-list-data-padding-x: 1rem;
+  --d-topic-list-data-padding-y: 1rem;
+  --d-topic-list-data-padding-inline-start: 1rem;
+  --d-topic-list-data-padding-inline-end: 1rem;
+  --d-topic-list-header-data-padding-x: 1rem;
+  --d-topic-list-header-data-padding-y: 1rem;
 
-    span {
-      background-color: var(--box_background) !important;
-      color: var(--topic-separator_color);
-      font-weight: 600;
-    }
+  th {
+    font-weight: 600;
   }
 
   tr:last-of-type {
     border-bottom: none;
   }
+}
 
-  th,
-  td {
-    padding: 1rem;
+.topic-list .topic-list-item-separator td {
+  border-bottom: 1px solid var(--topic-separator_color);
+
+  span {
+    background-color: var(--box_background);
+    color: var(--topic-separator_color);
+    font-weight: 600;
   }
 }
 
-// small-action  -------------------------------
+// --------------------------------------------------
+// Category list
+// --------------------------------------------------
+.category-list {
+  tbody .latest {
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  .featured-topic:first-of-type {
+    margin-top: 1rem;
+  }
+}
+
+@media (width < #{$bp-sm}) {
+  .categories-list .category-list {
+    margin-bottom: 0;
+
+    th {
+      padding: 1rem 0 0;
+    }
+  }
+
+  .category-list,
+  .category-list-item .topic-list {
+    background: none;
+    box-shadow: none;
+  }
+
+  .category-list-item {
+    border-bottom: none;
+    border-top: none;
+    margin-bottom: 1rem;
+    padding: 0;
+
+    h3,
+    h4 {
+      padding: 0 0 0 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--primary-low);
+      padding: 1rem;
+    }
+  }
+
+  .subcategory-list-item h3,
+  .subcategory-list-item h4 {
+    padding: 0 0 0 1rem;
+  }
+
+  .topic-list tbody {
+    border-top: none;
+  }
+}
+
+// --------------------------------------------------
+// Misc
+// --------------------------------------------------
 .small-action {
   border-top: none;
   max-width: 100%;
 }
 
-// list-area  -------------------------------
 #list-area {
   margin-bottom: 0;
 }
 
-// timeline  -------------------------------
 .timeline-container {
   .timeline-handle {
-    background-color: var(--tertiary) !important;
+    background-color: var(--tertiary);
   }
 
   .timeline-scrollarea {
-    border-color: var(--tertiary) !important;
+    border-color: var(--tertiary);
   }
 }
