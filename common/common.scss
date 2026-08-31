@@ -12,8 +12,8 @@
     font-display: swap;
     src: url($font) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-      U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-      U+2212, U+2215, U+FEFF, U+FFFD;
+    U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
   }
 }
 
@@ -93,7 +93,7 @@ body {
   z-index: -1;
 }
 
-#main-outlet>.regular {
+#main-outlet > .regular {
   background-color: transparent;
 }
 
@@ -465,7 +465,7 @@ body {
   }
 }
 
-.user-main.about.collapsed-info.details {
+.user-main .about.collapsed-info .details {
   padding: 16px 16px 9px 16px;
 }
 
@@ -483,12 +483,17 @@ body {
   background-color: var(--box_background);
   border-radius: var(--d-border-radius);
   box-shadow: $box-shadow;
+  margin-bottom: 1rem;
 }
 
 .more-topics__container {
   max-width: calc(var(--d-max-width));
 }
 
-.categories-list.with-topics {
+.category-list.with-topics {
   margin-left: 0;
+}
+
+#reply-control:not(.fullscreen).hide-preview {
+  max-width: calc(var(--d-max-width) - (2 * var(--d-wrap-padding-x)));
 }
