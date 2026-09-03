@@ -490,6 +490,16 @@ body {
   margin-bottom: 1rem;
 }
 
+@media (width >= #{$bp-sm}) {
+  .list-controls {
+    margin-bottom: 0;
+  }
+
+  .category-list .featured-topic {
+    margin-top: 4px;
+  }
+}
+
 .more-topics__container {
   max-width: calc(var(--d-max-width));
 }
@@ -501,3 +511,18 @@ body {
 #reply-control:not(.fullscreen).hide-preview {
   max-width: calc(var(--d-max-width) - (2 * var(--d-wrap-padding-x)));
 }
+
+.welcome-banner {
+  display: none
+}
+
+.small-action.topic-post-visited .topic-post-visited-line {
+  border-bottom: 2px solid var(--d-button-primary-bg-color);
+}
+
+.small-action.topic-post-visited .topic-post-visited-line .topic-post-visited-message {
+  font-size: var(--font-0);
+  font-weight: normal;
+  color: var(--d-button-default-text-color);
+}
+
