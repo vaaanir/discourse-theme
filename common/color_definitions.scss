@@ -10,12 +10,12 @@ $header-border: dark-light-choose($header-border-light, $header-border-dark);
 $header-primary: dark-light-choose($header-primary-light, $header-primary-dark);
 
 $header-dd-background: dark-light-choose(
-  $header-dd-bg-light,
-  $header-dd-bg-dark
+        $header-dd-bg-light,
+        $header-dd-bg-dark
 );
 $header-dd-hover-background: dark-light-choose(
-  $header-dd-hover-bg-light,
-  $header-dd-hover-bg-dark
+        $header-dd-hover-bg-light,
+        $header-dd-hover-bg-dark
 );
 
 $sidebar-background: dark-light-choose($sidebar-bg-light, $sidebar-bg-dark);
@@ -27,17 +27,22 @@ $notice-text: dark-light-choose($notice-text-light, $notice-text-dark);
 $notice-background: dark-light-choose($notice-bg-light, $notice-bg-dark);
 
 $notice-team-background: dark-light-choose(
-  $notice-team-bg-light,
-  $notice-team-bg-dark
+        $notice-team-bg-light,
+        $notice-team-bg-dark
 );
 $notice-mod-background: dark-light-choose(
-  $notice-mod-bg-light,
-  $notice-mod-bg-dark
+        $notice-mod-bg-light,
+        $notice-mod-bg-dark
 );
 
 $topic-separator-color: dark-light-choose(
-  $topic-separator-light,
-  $topic-separator-dark
+        $topic-separator-light,
+        $topic-separator-dark
+);
+
+$mention-background-color: dark-light-choose(
+        $mention-background-light,
+        $mention-background-dark
 );
 
 // custom vars -------------------------------
@@ -65,4 +70,6 @@ $topic-separator-color: dark-light-choose(
   --notice-mod_background: #{$notice-mod-background};
 
   --topic-separator_color: #{$topic-separator-color};
+
+  --mention-background-color: #{$mention-background-color};
 }
