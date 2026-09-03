@@ -402,6 +402,15 @@ body {
 }
 
 @media (width < #{$bp-sm}) {
+  .category-list-item.category .posts {
+    vertical-align: middle;
+    text-align: right;
+  }
+
+  .list-controls {
+    margin-bottom: 0;
+  }
+
   .topic-list-item.visited,
   .latest-topic-list-item.visited,
   .category-topic-link.visited {
