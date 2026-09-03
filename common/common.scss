@@ -548,3 +548,7 @@ body {
   color: var(--d-button-default-text-color);
 }
 
+.category-list .topics .badge-notification,
+.category-list .category .badge-notification {
+  color: var(--primary-high);
+}
