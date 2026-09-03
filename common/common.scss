@@ -402,11 +402,18 @@ body {
 }
 
 @media (width < #{$bp-sm}) {
+  .topic-list-item.visited,
+  .latest-topic-list-item.visited,
+  .category-topic-link.visited {
+    background-color: transparent;
+    color: var(--primary);
+  }
+
   .categories-list .category-list {
     margin-bottom: 0;
 
     th {
-      padding: 1rem 0 0;
+      padding: 1rem 0 4px;
     }
   }
 
