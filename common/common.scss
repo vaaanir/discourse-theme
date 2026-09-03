@@ -420,9 +420,6 @@ body {
 
   .topic-list-item.visited a.title:not(.badge-notification),
   .latest-topic-list-item.visited a.title:not(.badge-notification),
-  .category-topic-link.visited a.title:not(.badge-notification),
-  .topic-list-item.visited a.title:not(.badge-notification),
-  .latest-topic-list-item.visited a.title:not(.badge-notification),
   .category-topic-link.visited a.title:not(.badge-notification) {
     color: var(--primary);
   }
@@ -567,4 +564,10 @@ body {
 
 .topic-list-item:not(.visited) {
   border-left: 2px solid var(--d-button-primary-bg-color);
+}
+
+.topic-list-item.visited a.title:not(.badge-notification),
+.latest-topic-list-item.visited a.title:not(.badge-notification),
+.category-topic-link.visited a.title:not(.badge-notification) {
+  color: var(--primary);
 }
