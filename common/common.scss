@@ -513,10 +513,6 @@ body {
 }
 
 @media (width >= #{$bp-sm}) {
-  .list-controls {
-    margin-bottom: 0;
-  }
-
   .category-list .featured-topic {
     margin-top: 4px;
   }
@@ -538,10 +534,15 @@ body {
   display: none
 }
 
+.topic-list .topic-list-item-separator .topic-list-data,
 .small-action.topic-post-visited .topic-post-visited-line {
   border-bottom: 2px solid var(--d-button-primary-bg-color);
 }
 
+.topic-list .topic-list-item-separator td {
+  border-bottom: 0;
+}
+.topic-list .topic-list-item-separator .topic-list-data span,
 .small-action.topic-post-visited .topic-post-visited-line .topic-post-visited-message {
   font-size: var(--font-0);
   font-weight: normal;
@@ -551,4 +552,11 @@ body {
 .category-list .topics .badge-notification,
 .category-list .category .badge-notification {
   color: var(--primary-high);
+}
+
+.topic-list-item,
+.topic-list-item.visited,
+.latest-topic-list-item.visited,
+.category-topic-link.visited {
+  background-color: var(--box_background);
 }
